@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { ReactTyped } from "react-typed";
 
-const Typewriter = ({ text, delay }: { text: string; delay: number }) => {
-  const [currentText, setCurrentText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
+const Typewriter = () => (
+  <div>
+    <ReactTyped
+      strings={[
+        "Search for products",
+        "Search for categories",
+        "Search for brands",
+      ]}
+      typeSpeed={40}
+      backSpeed={50}
+      attr="placeholder"
+      loop
+    >
+      <input type="text" />
+    </ReactTyped>
+  </div>
+);
 
-  // Typing logic goes here
-  useEffect(() => {
-    if (currentIndex < text.length) {
-      const timeout = setTimeout(() => {
-        setCurrentText((prevText) => prevText + text[currentIndex]);
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, delay);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, delay, text]);
-
-  return <span>{currentText}</span>;
-};
+export default Typewriter;

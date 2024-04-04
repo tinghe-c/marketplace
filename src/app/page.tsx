@@ -1,16 +1,14 @@
 "use client";
 
-import Image from "next/image";
-import $ from "jquery";
 import React, { useState } from "react";
 import LogoButton from "./header";
-
-const searchBar = () => {};
+import Typewriter from "./typewriter";
+import ReactTyped from "react-typed";
 
 const navbar = (
   <header className="flex items-center justify-between font-mono text-sm">
     <div>{LogoButton()}</div>
-    <div className="w-full border-2 border-rose-500">searchbar</div>
+    {Typewriter()}
     <div className="border-2 border-white">dark</div>
     <div className="border-2 border-white">account</div>
     <div className="border-2 border-white">cart</div>
