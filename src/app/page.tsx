@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import LogoButton from "./header";
+import ProductList from "./product-list";
 import Typewriter from "./typewriter";
 import ReactTyped from "react-typed";
 
@@ -20,54 +21,7 @@ export default function Home() {
     <div className="flex h-screen flex-col overflow-hidden justify-between p-5">
       {navbar}
       <main id="list" className="flex-1 overflow-y-scroll font-mono text-sm">
-        <div className="min-h-screen">
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-            quos dignissimos doloremque enim necessitatibus accusamus dolorum
-            aperiam, at tempora vel?
-          </p>
-        </div>
-        <div className="min-h-screen">
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-            quos dignissimos doloremque enim necessitatibus accusamus dolorum
-            aperiam, at tempora vel?
-          </p>
-        </div>
-        <div className="min-h-screen">
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-            quos dignissimos doloremque enim necessitatibus accusamus dolorum
-            aperiam, at tempora vel?
-          </p>
-        </div>
-        <div className="min-h-screen">
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-            quos dignissimos doloremque enim necessitatibus accusamus dolorum
-            aperiam, at tempora vel?
-          </p>
-        </div>
-        <div className="min-h-screen">
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-            quos dignissimos doloremque enim necessitatibus accusamus dolorum
-            aperiam, at tempora vel?
-          </p>
-        </div>
-        <div className="min-h-screen">
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-            quos dignissimos doloremque enim necessitatibus accusamus dolorum
-            aperiam, at tempora vel?
-          </p>
-        </div>
-        <a
-          href="https://www.flaticon.com/free-icons/tangerine"
-          title="tangerine icons"
-        >
-          Tangerine icons created by Freepik - Flaticon
-        </a>
+        {ProductList({ url: "https://dummyjson.com/products" })}
       </main>
     </div>
   );
