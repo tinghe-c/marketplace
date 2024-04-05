@@ -1,6 +1,4 @@
-import Image from "next/image";
-
-export interface ProductProps {
+export interface Product {
   id: number;
   title: string;
   description: string;
@@ -12,18 +10,4 @@ export interface ProductProps {
   category: string;
   thumbnail: string;
   images: string[];
-}
-
-export default function Product(product: ProductProps) {
-  return (
-    <div>
-      <p>{product.title}</p>
-      <Image
-        width="100"
-        height="100"
-        src={product.thumbnail}
-        alt={product.description}
-      />
-    </div>
-  );
 }

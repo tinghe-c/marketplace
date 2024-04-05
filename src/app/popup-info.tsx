@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Popup from "reactjs-popup"; //
 
-export const PopupInfo = () => {
+export default function PopupInfo() {
   const [open, setOpen] = useState(false);
   const closeModal = () => setOpen(false);
   return (
@@ -21,4 +21,4 @@ export const PopupInfo = () => {
       </Popup>
     </div>
   );
-};
+}
