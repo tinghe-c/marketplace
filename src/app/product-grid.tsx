@@ -2,14 +2,24 @@
 
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-// import Product from "./product";
+import GridLayout from "react-grid-layout";
 import Product, { ProductProps } from "./product";
+import _ from "lodash";
+import Masonry from "react-responsive-masonry";
 
 interface ProductListProps {
   url: string;
 }
 
-export default function ProductList({ url }: ProductListProps) {
+interface LayoutEntry {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  i: string;
+}
+
+export default function ProductGrid({ url }: ProductListProps) {
   const [products, updateProducts] = useState([] as string[]);
   const [currentUrl, updateCurrentUrl] = useState(url);
   const [nextUrl, updateNextUrl] = useState(undefined as unknown as string);
@@ -41,7 +51,7 @@ export default function ProductList({ url }: ProductListProps) {
       hasMore={nextUrl !== ""}
       loader={<div>loading more products...</div>}
     >
-      {products}
+      <Masonry>{products}</Masonry>
     </InfiniteScroll>
   );
 }

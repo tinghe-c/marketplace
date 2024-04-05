@@ -10,6 +10,7 @@ const LogoButton = () => {
 
   return (
     <Image
+      title="Tangerine Marketplace"
       width="24"
       height="24"
       src="/tangerine.png"
