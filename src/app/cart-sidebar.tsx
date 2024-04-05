@@ -21,12 +21,13 @@ export default function CartSidebar(props: CartSidebarProps) {
       breakPoint="all"
     >
       {Array.from(props.cart).map((entry, i) => {
-        const [product, count] = entry;
+        const [product, [count, updateCount]] = entry;
         return (
           <div key={i}>
             <CartItem
               product={product}
               count={count}
+              updateCount={updateCount}
               updateCart={props.updateCart}
             ></CartItem>
           </div>

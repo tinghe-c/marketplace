@@ -6,12 +6,22 @@ import { Dispatch, SetStateAction } from "react";
 interface CartItemProps {
   product: Product;
   count: number;
+  updateCount: Dispatch<SetStateAction<number>>;
   updateCart: Dispatch<SetStateAction<Cart>>;
 }
 
 export default function CartItem(props: CartItemProps) {
-  const plus = () => props.updateCart(addToCart(props.product));
-  const minus = () => props.updateCart(subtractFromCart(props.product));
+  const plus = () => {
+    props.updateCart(
+      addToCart({ product: props.product, updateCount: props.updateCount })
+    );
+    props.updateCount((c) => c + 1);
+  };
+  const minus = () => {
+    props.updateCart(subtractFromCart(props.product));
+    props.updateCount((c) => c - 1);
+  };
+
   return (
     <div className="p-1">
       <div className="border overflow-auto">

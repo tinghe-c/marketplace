@@ -20,18 +20,14 @@ export default function ProductTile({ product, updateCart }: ProductTileProps) {
 
   const plus = () => {
     // TODO API call
-    updateCart(addToCart(product));
-    updateCart((cart) => {
-      updateCount((_) => cart.get(product) || 0);
-      return cart;
-    });
+    updateCart(
+      addToCart({
+        product,
+        updateCount,
+      })
+    );
+    updateCount((c) => c + 1);
   };
-  // const [count, updateCount] = useState(0);
-
-  // useEffect(() => {
-  //   console.log("updated count");
-  //   updateCount((_) => cart.get(product) || 0);
-  // }, [cart]);
 
   return (
     <div className="p-1">
