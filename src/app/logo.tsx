@@ -5,11 +5,12 @@ import $ from "jquery";
 
 const LogoButton = () => {
   const scrollToTop = () => {
-    $("#list").scrollTop(0);
+    $("#scrollableDiv").scrollTop(0);
   };
 
   return (
     <Image
+      className="cursor-pointer"
       title="Tangerine Marketplace"
       width="24"
       height="24"

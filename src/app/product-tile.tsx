@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Product } from "./product";
-import { Cart } from "./cart";
+import { Cart, addToCart } from "./cart";
 import { Dispatch, SetStateAction } from "react";
 
 interface ProductTileProps {
@@ -9,7 +9,10 @@ interface ProductTileProps {
 }
 
 export default function ProductTile({ product, updateCart }: ProductTileProps) {
-  const addToCart = () => updateCart((cart) => cart.add(product));
+  const plus = () => {
+    // TODO API call
+    updateCart(addToCart(product));
+  };
 
   return (
     <div className="p-1">
@@ -26,7 +29,7 @@ export default function ProductTile({ product, updateCart }: ProductTileProps) {
             <strong>{product.title}</strong>
           </p>
           <p>${product.price}</p>
-          <button onClick={() => addToCart()}>to cart</button>
+          <button onClick={plus}>to cart</button>
         </div>
       </div>
     </div>

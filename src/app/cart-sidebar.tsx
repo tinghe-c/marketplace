@@ -7,6 +7,7 @@ interface CartSidebarProps {
   cart: Cart;
   visible: boolean;
   updateVisible: Dispatch<SetStateAction<boolean>>;
+  updateCart: Dispatch<SetStateAction<Cart>>;
 }
 
 export default function CartSidebar(props: CartSidebarProps) {
@@ -15,13 +16,17 @@ export default function CartSidebar(props: CartSidebarProps) {
       rtl
       onBackdropClick={() => props.updateVisible((_) => false)}
       toggled={props.visible}
-      breakPoint="always"
+      breakPoint="all"
     >
-      {Array.from(props.cart.products).map((entry, i) => {
+      {Array.from(props.cart).map((entry, i) => {
         const [product, count] = entry;
         return (
           <div key={i}>
-            <CartItem {...product} count={count}></CartItem>
+            <CartItem
+              product={product}
+              count={count}
+              updateCart={props.updateCart}
+            ></CartItem>
           </div>
         );
       })}

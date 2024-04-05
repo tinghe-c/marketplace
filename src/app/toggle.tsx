@@ -29,7 +29,7 @@ export const DarkModeToggle = () => {
   };
 
   return (
-    <div id="dark-mode-toggle" className="p-2 text-xl" onClick={toggle}>
+    <div className="p-2 text-xl cursor-pointer" onClick={toggle}>
       {!isDark ? "🌙" : "🔆"}
     </div>
   );

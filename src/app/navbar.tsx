@@ -14,7 +14,7 @@ export default function Navbar({ updateCartVisible }: NavbarProps) {
     <header className="flex items-center justify-between border-b border-slate-500 text-sm p-4">
       <LogoButton />
       <Typewriter />
-      <div className="pl-1 pr-3">
+      <div className="pl-1 pr-3 cursor-pointer">
         <div className="text-xl">🔍</div>
       </div>
       <PopupInfo />
