@@ -1,0 +1,27 @@
+.ps-sidebar-container {
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground);
+  opacity: 1;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+.ps-sidebar-container::-webkit-scrollbar {
+  display: none !important;
+}
+
+.ps-sidebar-backdrop {
+  top: 77px !important;
+  border: 0px;
+}
+
+.ps-sidebar-root {
+  height: calc(100% - 77px) !important;
+  top: 77px !important;
+  border-left-style: none !important;
+}
+
+.cart-summary {
+  top: 0;
+  position: sticky;
+  background-color: var(--color-background);
+}

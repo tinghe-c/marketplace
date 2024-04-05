@@ -1,0 +1,9 @@
+
+input {
+  /* background-color: rgb(31 41 55); */
+  background-color: var(--color-input);
+}
+
+input[type="checkbox"] {
+  visibility: hidden;
+}

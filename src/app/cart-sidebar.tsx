@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Cart } from "./cart";
 import { Sidebar } from "react-pro-sidebar";
 import CartItem from "./cart-item";
+import CheckoutPopup from "./checkout-popup";
 
 interface CartSidebarProps {
   cart: Cart;
@@ -23,22 +24,13 @@ export default function CartSidebar(props: CartSidebarProps) {
       toggled={props.visible}
       breakPoint="all"
     >
-      <div className="p-1 border-b" id="cart-summary">
+      <div className="cart-summary p-1 border-b">
         <div className="overflow-auto">
           <div className="text-left p-2">
             <span>
               <strong>Cart subtotal:</strong> ${totalPrice(props.cart)}
             </span>
-            {props.cart.isEmpty() ? (
-              <span></span>
-            ) : (
-              <button
-                onClick={() => alert("outside the scope of this task")}
-                className="button checkout float-right"
-              >
-                Checkout
-              </button>
-            )}
+            {props.cart.isEmpty() ? <span></span> : <CheckoutPopup />}
           </div>
         </div>
       </div>
