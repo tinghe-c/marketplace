@@ -9,7 +9,7 @@ export default function CartToggle({ updateVisible }: CartToggleProps) {
 
   return (
     <div className="pl-1 cursor-pointer" onClick={toggle}>
-      <div className="border px-1">cart</div>
+      <button className="button border px-1">cart</button>
     </div>
   );
 }

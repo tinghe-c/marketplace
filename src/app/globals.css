@@ -19,12 +19,14 @@
 body {
   --color-background: #fafafa;
   --color-foreground: #1f2023;
-  --color-border: #64748b;
+  --color-input: #64748b;
+  --color-border: #1f2937;
 }
 
 body.dark {
   --color-background: #1f2023;
   --color-foreground: #efefef;
+  --color-input: #1f2937;
   --color-border: #64748b;
 }
 
@@ -36,11 +38,12 @@ body {
       var(--color-background)
     )
     var(--color-background);
-  border-color: var(--color-border);
+  border-color: var(--color-foreground);
 }
 
 input {
-  background-color: rgb(31 41 55);
+  /* background-color: rgb(31 41 55); */
+  background-color: var(--color-input);
 }
 
 @layer utilities {
@@ -55,4 +58,38 @@ input[type="checkbox"] {
 
 div {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.button {
+  padding: 0px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: var(--color-background); 
+  color: var(--color-foreground); 
+  border: 2px solid var(--color-border);
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--color-border);
+  color: white;
+}
+
+.in-cart {
+  padding: 0px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #15803d;
+  border: 2px solid #15803d;
+  color: white;
+}
+
+.css-dip3t8 {
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground);
+  opacity: 1;
+  top: 20%;
+  height: 100%;
 }

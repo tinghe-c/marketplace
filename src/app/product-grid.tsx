@@ -12,22 +12,20 @@ import { Cart } from "./cart";
 interface ProductListProps {
   baseUrl: string;
   pageSize: number;
+  cart: Cart;
   updateCart: Dispatch<SetStateAction<Cart>>;
 }
 
 export default function ProductGrid({
   baseUrl,
   pageSize,
+  cart,
   updateCart,
 }: ProductListProps) {
   const [products, updateProducts] = useState([] as string[]);
-  // const [numProducts, updateNumProducts] = useState(
-  //   undefined as unknown as number
-  // );
   const [currentUrl, updateCurrentUrl] = useState(
     `${baseUrl}/products?skip=0&limit=${pageSize}`
   );
-  // const [nextUrl, updateNextUrl] = useState("");
   const [nextUrl, updateNextUrl] = useState(undefined as unknown as string);
 
   useEffect(() => {
@@ -45,9 +43,17 @@ export default function ProductGrid({
 
         updateProducts((oldProducts) => {
           const newProducts = data.products.map(
-            (product: Product, i: number) => (
-              <ProductTile key={i} product={product} updateCart={updateCart} />
-            )
+            (product: Product, i: number) => {
+              const count = cart.get(product) || 0;
+              return (
+                <ProductTile
+                  key={i}
+                  product={product}
+                  cart={cart}
+                  updateCart={updateCart}
+                />
+              );
+            }
           );
           return [...oldProducts, ...newProducts];
         });
@@ -55,9 +61,6 @@ export default function ProductGrid({
         updateNextUrl((_) => {
           const total = data.skip + data.limit;
           if (total < data.total) {
-            console.log(
-              `new url: ${baseUrl}/products?skip=${total}&limit=${pageSize}`
-            );
             return `${baseUrl}/products?skip=${total}&limit=${pageSize}`;
           }
           return undefined as unknown as string;

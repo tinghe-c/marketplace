@@ -14,6 +14,8 @@ export default function CartSidebar(props: CartSidebarProps) {
   return (
     <Sidebar
       rtl
+      className="sidebar"
+      width="500px"
       onBackdropClick={() => props.updateVisible((_) => false)}
       toggled={props.visible}
       breakPoint="all"

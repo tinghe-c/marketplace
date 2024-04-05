@@ -29,8 +29,12 @@ export const DarkModeToggle = () => {
   };
 
   return (
-    <div className="p-2 text-xl cursor-pointer" onClick={toggle}>
-      {!isDark ? "🌙" : "🔆"}
+    <div
+      className="p-2 text-xl cursor-pointer"
+      title={isDark ? "Let there be light!" : "Hello darkness, my old friend"}
+      onClick={toggle}
+    >
+      {isDark ? "🔆" : "🌙"}
     </div>
   );
 };

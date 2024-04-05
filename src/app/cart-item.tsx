@@ -27,13 +27,17 @@ export default function CartItem(props: CartItemProps) {
             <strong>{props.product.title}</strong>
           </p>
           <p>${props.product.price}</p>
-          <p>in cart: {props.count}</p>
-          <p className="cursor-pointer" onClick={plus}>
-            +
-          </p>
-          <p className="cursor-pointer" onClick={minus}>
-            -
-          </p>
+          <span>
+            <span className="button" onClick={minus}>
+              -
+            </span>
+            <span> | </span>
+            <span className="button" onClick={plus}>
+              +
+            </span>
+            <span> | </span>
+            <span className="in-cart inline-block">in cart: {props.count}</span>
+          </span>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ export default function PopupInfo() {
         account
       </button>
       <Popup open={open} closeOnDocumentClick onClose={closeModal}>
-        <div className="modal bg-slate-500" onClick={closeModal}>
+        <div className="bg-slate-500" onClick={closeModal}>
           <p>Placeholder for an actual account page</p>
           <p>Tangerine Marketplace</p>
         </div>

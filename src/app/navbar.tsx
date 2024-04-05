@@ -1,7 +1,7 @@
 import LogoButton from "./logo";
 import Typewriter from "./typewriter";
 import PopupInfo from "./popup-info";
-import DarkModeToggle from "./toggle";
+import DarkModeToggle from "./darkmode-toggle";
 import { Dispatch, SetStateAction } from "react";
 import CartToggle from "./cart-toggle";
 
