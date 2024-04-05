@@ -16,13 +16,38 @@ interface ProductListProps {
   updateCart: Dispatch<SetStateAction<Cart>>;
 }
 
+interface ProductAPIResult {
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+
+function cleanUpStr(str: string) {
+  let words = str.split(" ");
+  let clean = [];
+  for (let word of words) {
+    word = word.replaceAll(".", "");
+    word = word.charAt(0).toUpperCase() + word.slice(1);
+    clean.push(word);
+  }
+  return clean.join(" ");
+}
+
+function cleanUpData(data: ProductAPIResult) {
+  for (let product of data.products) {
+    product.title = cleanUpStr(product.title);
+  }
+  return data;
+}
+
 export default function ProductGrid({
   baseUrl,
   pageSize,
   cart,
   updateCart,
 }: ProductListProps) {
-  const [products, updateProducts] = useState([] as string[]);
+  const [products, updateProducts] = useState([] as React.JSX.Element[]);
   const [currentUrl, updateCurrentUrl] = useState(
     `${baseUrl}/products?skip=0&limit=${pageSize}`
   );
@@ -37,6 +62,9 @@ export default function ProductGrid({
         return response.json();
       })
       .then((data) => {
+        return cleanUpData(data);
+      })
+      .then((data: ProductAPIResult) => {
         if (ignore) {
           return;
         }
