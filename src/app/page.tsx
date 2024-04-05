@@ -46,7 +46,6 @@ export default function Home() {
       <Navbar updateCartVisible={updateCartVisible} />
       <div className="h-4"></div>
       <main className="flex-1 overflow-y-scroll font-mono text-sm px-4 pb-4">
-        {/* {ProductList({ url: "https://dummyjson.com/products" })} */}
         <ProductGrid
           baseUrl="https://dummyjson.com"
           pageSize={25}
@@ -59,7 +58,6 @@ export default function Home() {
           updateVisible={updateCartVisible}
           updateCart={updateCart}
         />
-        {/* <Foo /> */}
       </main>
     </div>
   );

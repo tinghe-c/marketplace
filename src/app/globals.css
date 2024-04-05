@@ -69,6 +69,7 @@ div {
   color: var(--color-foreground); 
   border: 2px solid var(--color-border);
   cursor: pointer;
+  transition-duration: 300ms;
 }
 
 .button:hover {
@@ -86,10 +87,25 @@ div {
   color: white;
 }
 
-.css-dip3t8 {
+.ps-sidebar-container {
   background-color: var(--color-background) !important;
   color: var(--color-foreground);
   opacity: 1;
-  top: 20%;
-  height: 100%;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }
+.ps-sidebar-container::-webkit-scrollbar {
+  display: none !important;
+}
+
+.ps-sidebar-backdrop {
+  top: 77px !important;
+  border: 0px;
+}
+
+.ps-sidebar-root {
+  height: calc(100% - 77px) !important;
+  top: 77px !important;
+  border-left-style: none !important;
+}
+

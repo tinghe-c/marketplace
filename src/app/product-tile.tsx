@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Product } from "./product";
-import { Cart, addToCart } from "./cart";
+import { Cart, addToCart, subtractFromCart } from "./cart";
 import {
   Dispatch,
   SetStateAction,
@@ -29,6 +29,11 @@ export default function ProductTile({ product, updateCart }: ProductTileProps) {
     updateCount((c) => c + 1);
   };
 
+  const minus = () => {
+    updateCart(subtractFromCart(product));
+    updateCount((c) => c - 1);
+  };
+
   return (
     <div className="p-1">
       <div className="border overflow-auto">
@@ -47,12 +52,16 @@ export default function ProductTile({ product, updateCart }: ProductTileProps) {
             <span>${product.price}</span>
             <span> | </span>
             <span>
-              <button className="button duration-300" onClick={plus}>
-                to cart
+              <button className="button" onClick={plus}>
+                +
               </button>
             </span>
             {count > 0 ? (
               <span>
+                <span> | </span>
+                <button className="button" onClick={minus}>
+                  -
+                </button>
                 <span> | </span>
                 <div className="in-cart inline-block duration-300">
                   in cart: {count}
