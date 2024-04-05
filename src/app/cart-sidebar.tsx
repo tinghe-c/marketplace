@@ -23,13 +23,22 @@ export default function CartSidebar(props: CartSidebarProps) {
       toggled={props.visible}
       breakPoint="all"
     >
-      <div className="p-1" id="cart-summary">
+      <div className="p-1 border-b" id="cart-summary">
         <div className="overflow-auto">
           <div className="text-left p-2">
             <span>
-              <strong>Cart subtotal</strong>
+              <strong>Cart subtotal:</strong> ${totalPrice(props.cart)}
             </span>
-            <span className="float-right">${totalPrice(props.cart)}</span>
+            {props.cart.isEmpty() ? (
+              <span></span>
+            ) : (
+              <button
+                onClick={() => alert("outside the scope of this task")}
+                className="button checkout float-right"
+              >
+                Checkout
+              </button>
+            )}
           </div>
         </div>
       </div>

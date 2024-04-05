@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --eyecatching-foreground: #15803d
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +14,7 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    --eyecatching-foreground: #15803d
   }
 }
 
@@ -77,13 +79,22 @@ div {
   color: white;
 }
 
+.checkout {
+  color: var(--eyecatching-foreground);
+  border-color: var(--eyecatching-foreground);
+}
+
+.checkout:hover {
+  background-color: var(--eyecatching-foreground);
+}
+
 .in-cart {
   padding: 0px 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  background-color: #15803d;
-  border: 2px solid #15803d;
+  background-color: var(--eyecatching-foreground);
+  border: 2px solid var(--eyecatching-foreground);
   color: white;
 }
 
