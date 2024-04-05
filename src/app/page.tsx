@@ -5,41 +5,57 @@ import ProductGrid from "./product-grid";
 import Navbar from "./navbar";
 import { Cart, newCart } from "./cart";
 import CartSidebar from "./cart-sidebar";
+import { CartsAPIResult, apiBaseUrl, userId } from "./api";
 
 export default function Home() {
-  const [cartId, updateCartId] = useState(0);
+  const [cartId, updateCartId] = useState(1000);
   const [cart, updateCart] = useState(newCart());
   const [cartVisible, updateCartVisible] = useState(false);
 
-  const userId = 1;
+  // send request to sync with server
+  const updateCartOnServer = () => {
+    updateCartId((cartId: number) => {
+      updateCart((cart: Cart) => {
+        const products = Array.from(cart).map((elem) => {
+          const [product, [quantity, _]] = elem;
+          return { id: product.id, quantity: quantity };
+        });
+        fetch(`${apiBaseUrl}/carts/${cartId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            merge: false,
+            products: products,
+          }),
+        });
+        return cart;
+      });
+      return cartId;
+    });
+  };
 
-  // update cartid on load
+  // fetch cart on load
   useEffect(() => {
     let ignore = false;
 
-    fetch("https://dummyjson.com/carts/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: userId,
-        products: [{}],
-      }),
-    })
+    fetch(`${apiBaseUrl}/carts/user/${userId}`)
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
         return response.json();
       })
-      .then((data) => {
+      .then((data: CartsAPIResult) => {
         if (ignore) {
           return;
         }
-        updateCartId((_) => data.id);
+
+        // updateCartId((_) => data.carts[0].id);
+        // updateCart((_) => data.carts[0]);
       });
 
     return () => {
       ignore = true;
     };
-  });
+  }, []);
 
   return (
     <div className="flex h-screen flex-col overflow-hidden justify-between">
@@ -51,12 +67,14 @@ export default function Home() {
           pageSize={25}
           cart={cart}
           updateCart={updateCart}
+          updateCartOnServer={updateCartOnServer}
         />
         <CartSidebar
           cart={cart}
           visible={cartVisible}
           updateVisible={updateCartVisible}
           updateCart={updateCart}
+          updateCartOnServer={updateCartOnServer}
         />
       </main>
     </div>

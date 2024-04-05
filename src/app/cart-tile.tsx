@@ -8,17 +8,28 @@ interface CartItemProps {
   count: number;
   updateCount: Dispatch<SetStateAction<number>>;
   updateCart: Dispatch<SetStateAction<Cart>>;
+  updateCartOnServer: () => void;
 }
 
-export default function CartItem(props: CartItemProps) {
+export interface CartItem {
+  id: number;
+  title: string;
+  price: number;
+  quantity: number;
+  thumbnail: string;
+}
+
+export default function CartTile(props: CartItemProps) {
   const plus = () => {
     props.updateCart(
       addToCart({ product: props.product, updateCount: props.updateCount })
     );
+    props.updateCartOnServer();
     props.updateCount((c) => c + 1);
   };
   const minus = () => {
     props.updateCart(subtractFromCart(props.product));
+    props.updateCartOnServer();
     props.updateCount((c) => c - 1);
   };
 

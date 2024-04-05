@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { Cart } from "./cart";
 import { Sidebar } from "react-pro-sidebar";
-import CartItem from "./cart-item";
+import CartTile from "./cart-tile";
 import CheckoutPopup from "./checkout-popup";
 
 interface CartSidebarProps {
@@ -9,6 +9,7 @@ interface CartSidebarProps {
   visible: boolean;
   updateVisible: Dispatch<SetStateAction<boolean>>;
   updateCart: Dispatch<SetStateAction<Cart>>;
+  updateCartOnServer: () => void;
 }
 
 const totalPrice = (cart: Cart) =>
@@ -38,12 +39,13 @@ export default function CartSidebar(props: CartSidebarProps) {
         const [product, [count, updateCount]] = entry;
         return (
           <div key={i}>
-            <CartItem
+            <CartTile
               product={product}
               count={count}
               updateCount={updateCount}
               updateCart={props.updateCart}
-            ></CartItem>
+              updateCartOnServer={props.updateCartOnServer}
+            ></CartTile>
           </div>
         );
       })}

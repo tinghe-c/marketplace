@@ -13,9 +13,14 @@ interface ProductTileProps {
   product: Product;
   cart: Cart;
   updateCart: Dispatch<SetStateAction<Cart>>;
+  updateCartOnServer: () => void;
 }
 
-export default function ProductTile({ product, updateCart }: ProductTileProps) {
+export default function ProductTile({
+  product,
+  updateCart,
+  updateCartOnServer,
+}: ProductTileProps) {
   const [count, updateCount] = useState(0);
 
   const plus = () => {
@@ -26,11 +31,13 @@ export default function ProductTile({ product, updateCart }: ProductTileProps) {
         updateCount,
       })
     );
+    updateCartOnServer();
     updateCount((c) => c + 1);
   };
 
   const minus = () => {
     updateCart(subtractFromCart(product));
+    updateCartOnServer();
     updateCount((c) => c - 1);
   };
 

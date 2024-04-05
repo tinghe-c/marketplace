@@ -8,19 +8,14 @@ import _ from "lodash";
 import Masonry from "react-responsive-masonry";
 import { Product } from "./product";
 import { Cart } from "./cart";
+import { ProductAPIResult } from "./api";
 
-interface ProductListProps {
+interface ProductGridProps {
   baseUrl: string;
   pageSize: number;
   cart: Cart;
   updateCart: Dispatch<SetStateAction<Cart>>;
-}
-
-interface ProductAPIResult {
-  products: Product[];
-  total: number;
-  skip: number;
-  limit: number;
+  updateCartOnServer: () => void;
 }
 
 function cleanUpStr(str: string) {
@@ -46,7 +41,8 @@ export default function ProductGrid({
   pageSize,
   cart,
   updateCart,
-}: ProductListProps) {
+  updateCartOnServer,
+}: ProductGridProps) {
   const [products, updateProducts] = useState([] as React.JSX.Element[]);
   const [currentUrl, updateCurrentUrl] = useState(
     `${baseUrl}/products?skip=0&limit=${pageSize}`
@@ -79,6 +75,7 @@ export default function ProductGrid({
                   product={product}
                   cart={cart}
                   updateCart={updateCart}
+                  updateCartOnServer={updateCartOnServer}
                 />
               );
             }
