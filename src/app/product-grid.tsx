@@ -78,7 +78,11 @@ export default function ProductGrid({
   };
 
   return (
-    <div id="scrollableDiv" style={{ height: "100%", overflow: "auto" }}>
+    <div
+      id="scrollableDiv"
+      className="overflow-y-scroll"
+      style={{ height: "100%", overflow: "auto" }}
+    >
       <InfiniteScroll
         dataLength={products.length}
         next={() => fetchMore()}

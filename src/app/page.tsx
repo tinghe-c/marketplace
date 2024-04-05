@@ -45,7 +45,7 @@ export default function Home() {
     <div className="flex h-screen flex-col overflow-hidden justify-between">
       <Navbar updateCartVisible={updateCartVisible} />
       <div className="h-4"></div>
-      <main className="flex-1 overflow-y-scroll font-mono text-sm px-4 pb-4">
+      <main className="flex-1 overflow-hidden font-mono text-sm px-4 pb-4">
         <ProductGrid
           baseUrl="https://dummyjson.com"
           pageSize={25}
