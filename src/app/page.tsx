@@ -14,7 +14,7 @@ export default function Home() {
   const [cartId, updateCartId] = useState(1000);
   const [cart, updateCart] = useState(newCart());
   const [cartVisible, updateCartVisible] = useState(false);
-  const [query, updateQuery] = useState("iPhone");
+  const [query, updateQuery] = useState("");
 
   // send request to sync with server
   const updateCartOnServer = () => {
