@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Product } from "./product";
 import { Cart, addToCart, subtractFromCart } from "./cart";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, DispatchWithoutAction, SetStateAction } from "react";
 
 interface CartItemProps {
   product: Product;
@@ -9,15 +9,8 @@ interface CartItemProps {
   updateCount: Dispatch<SetStateAction<number>>;
   updateCart: Dispatch<SetStateAction<Cart>>;
   updateCartOnServer: () => void;
+  forceUpdate: DispatchWithoutAction;
 }
-
-// export interface CartItem {
-//   id: number;
-//   title: string;
-//   price: number;
-//   quantity: number;
-//   thumbnail: string;
-// }
 
 export default function CartTile(props: CartItemProps) {
   const plus = () => {
@@ -30,11 +23,17 @@ export default function CartTile(props: CartItemProps) {
     );
     props.updateCartOnServer();
     props.updateCount((c) => c + 1);
+    props.forceUpdate();
+    // props.updateQuery((x) => x + "o");
+    // props.updateQuery((x) => x.substring(1));
   };
   const minus = () => {
     props.updateCart(subtractFromCart(props.product.id));
     props.updateCartOnServer();
     props.updateCount((c) => c - 1);
+    props.forceUpdate();
+    // props.updateQuery((x) => x + "o");
+    // props.updateQuery((x) => x.substring(1));
   };
 
   return (

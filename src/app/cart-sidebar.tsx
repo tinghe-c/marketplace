@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, DispatchWithoutAction, SetStateAction } from "react";
 import { Cart } from "./cart";
 import { Sidebar } from "react-pro-sidebar";
 import CartTile from "./cart-tile";
@@ -10,6 +10,7 @@ interface CartSidebarProps {
   updateVisible: Dispatch<SetStateAction<boolean>>;
   updateCart: Dispatch<SetStateAction<Cart>>;
   updateCartOnServer: () => void;
+  forceUpdate: DispatchWithoutAction;
 }
 
 const totalPrice = (cart: Cart) =>
@@ -48,6 +49,7 @@ export default function CartSidebar(props: CartSidebarProps) {
               updateCount={updateCount}
               updateCart={props.updateCart}
               updateCartOnServer={props.updateCartOnServer}
+              forceUpdate={props.forceUpdate}
             ></CartTile>
           </div>
         );

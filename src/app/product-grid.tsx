@@ -8,10 +8,9 @@ import _ from "lodash";
 import Masonry from "react-responsive-masonry";
 import { Product } from "./product";
 import { Cart } from "./cart";
-import { ProductAPIResult, cleanUpData } from "./api";
+import { ProductAPIResult, apiBaseUrl, cleanUpData } from "./api";
 
 interface ProductGridProps {
-  baseUrl: string;
   pageSize: number;
   cart: Cart;
   updateCart: Dispatch<SetStateAction<Cart>>;
@@ -19,7 +18,6 @@ interface ProductGridProps {
 }
 
 export default function ProductDefaultGrid({
-  baseUrl,
   pageSize,
   cart,
   updateCart,
@@ -27,7 +25,7 @@ export default function ProductDefaultGrid({
 }: ProductGridProps) {
   const [products, updateProducts] = useState([] as React.JSX.Element[]);
   const [currentUrl, updateCurrentUrl] = useState(
-    `${baseUrl}/products?skip=0&limit=${pageSize}`
+    `${apiBaseUrl}/products?skip=0&limit=${pageSize}`
   );
   const [nextUrl, updateNextUrl] = useState(undefined as unknown as string);
 
@@ -48,7 +46,7 @@ export default function ProductDefaultGrid({
         updateProducts((oldProducts) => {
           const newProducts = data.products.map(
             (product: Product, i: number) => {
-              const count = cart.get(product) || 0;
+              const count = cart.get(product.id) || 0;
               return (
                 <ProductTile
                   key={i}
@@ -66,7 +64,7 @@ export default function ProductDefaultGrid({
         updateNextUrl((_) => {
           const total = data.skip + data.limit;
           if (total < data.total) {
-            return `${baseUrl}/products?skip=${total}&limit=${pageSize}`;
+            return `${apiBaseUrl}/products?skip=${total}&limit=${pageSize}`;
           }
           return undefined as unknown as string;
         });

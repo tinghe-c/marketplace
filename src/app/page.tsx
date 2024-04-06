@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useDebugValue, useEffect, useState } from "react";
+import React, { useDebugValue, useEffect, useReducer, useState } from "react";
 import ProductDefaultGrid from "./product-grid";
 import Navbar from "./navbar";
 import { Cart, newCart } from "./cart";
@@ -15,6 +15,7 @@ export default function Home() {
   const [cart, updateCart] = useState(newCart());
   const [cartVisible, updateCartVisible] = useState(false);
   const [query, updateQuery] = useState("");
+  const [generation, forceUpdate] = useReducer((x) => x + 1, 0);
 
   // send request to sync with server
   const updateCartOnServer = () => {
@@ -68,13 +69,15 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex h-screen flex-col overflow-hidden justify-between">
+    <div
+      key={generation}
+      className="flex h-screen flex-col overflow-hidden justify-between"
+    >
       <Navbar updateCartVisible={updateCartVisible} updateQuery={updateQuery} />
       <div className="h-4"></div>
       <main className="flex-1 overflow-hidden font-mono text-sm px-4 pb-4">
         {query.length == 0 ? (
           <ProductDefaultGrid
-            baseUrl="https://dummyjson.com"
             pageSize={25}
             cart={cart}
             updateCart={updateCart}
@@ -101,6 +104,7 @@ export default function Home() {
           updateVisible={updateCartVisible}
           updateCart={updateCart}
           updateCartOnServer={updateCartOnServer}
+          forceUpdate={forceUpdate}
         />
       </main>
     </div>
