@@ -1,13 +1,7 @@
 import Image from "next/image";
 import { Product } from "./product";
 import { Cart, addToCart, subtractFromCart } from "./cart";
-import {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface ProductTileProps {
   product: Product;
@@ -31,7 +25,6 @@ export default function ProductTile({
   }, []);
 
   const plus = () => {
-    // TODO API call
     updateCart(
       addToCart({
         id: product.id,

@@ -27,6 +27,14 @@ export interface CartsAPIResult {
   limit: number;
 }
 
+export interface Account {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  image: string;
+}
+
 function cleanUpStr(str: string) {
   let words = str.split(" ");
   let clean = [];

@@ -5,7 +5,7 @@ import ProductDefaultGrid from "./product-grid";
 import Navbar from "./navbar";
 import { Cart, newCart } from "./cart";
 import CartSidebar from "./cart-sidebar";
-import { CartsAPIResult, apiBaseUrl, userId } from "./api";
+import { Account, CartsAPIResult, apiBaseUrl, userId } from "./api";
 import ProductSearchGrid from "./product-search-grid";
 import ProductCategoryGrid from "./product-category-grid";
 import { userAgent } from "next/server";

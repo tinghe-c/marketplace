@@ -3,7 +3,8 @@ import Searchbar from "./searchbar";
 import DarkModeToggle from "./darkmode-toggle";
 import { Dispatch, SetStateAction } from "react";
 import CartToggle from "./cart-toggle";
-import Account from "./account";
+import AccountModal from "./account-modal";
+import { Account } from "./api";
 
 interface NavbarProps {
   updateCartVisible: Dispatch<SetStateAction<boolean>>;
@@ -21,7 +22,7 @@ export default function Navbar({
       <div className="pl-1 pr-3 cursor-pointer">
         <div className="text-xl">🔍</div>
       </div>
-      <Account />
+      <AccountModal />
       <CartToggle updateVisible={updateCartVisible} />
       <DarkModeToggle />
     </header>

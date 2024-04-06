@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { ReactTyped } from "react-typed";
 
 interface SearchbarProps {
