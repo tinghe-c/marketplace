@@ -73,7 +73,15 @@ export default function ProductDefaultGrid({
     return () => {
       ignore = true;
     };
-  }, [currentUrl, updateProducts, updateNextUrl]);
+  }, [
+    cart,
+    pageSize,
+    updateCart,
+    updateCartOnServer,
+    currentUrl,
+    updateProducts,
+    updateNextUrl,
+  ]);
 
   const fetchMore = () => {
     console.log(`fetching more, have ${products.length}`);

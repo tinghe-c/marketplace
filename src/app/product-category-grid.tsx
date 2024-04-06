@@ -61,7 +61,7 @@ export default function ProductCategoryGrid({
     return () => {
       ignore = true;
     };
-  }, [query, updateProducts]);
+  }, [cart, updateCart, updateCartOnServer, query, updateProducts]);
 
   return (
     <div

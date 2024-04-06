@@ -20,13 +20,13 @@ export default function AccountModal() {
   }, []);
 
   let tangerine = (
-    <img
+    <Image
       width="18"
       height="18"
       src="/tangerine.png"
       alt="logo"
       style={{ display: "inline" }}
-    ></img>
+    ></Image>
   );
 
   return account === undefined ? (

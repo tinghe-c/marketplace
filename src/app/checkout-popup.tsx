@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 import Popup from "reactjs-popup"; //
 
@@ -6,13 +7,13 @@ export default function CheckoutPopup() {
   const closeModal = () => setOpen(false);
 
   let tangerine = (
-    <img
+    <Image
       width="18"
       height="18"
       src="/tangerine.png"
       alt="logo"
       style={{ display: "inline" }}
-    ></img>
+    ></Image>
   );
 
   return (

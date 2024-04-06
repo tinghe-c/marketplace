@@ -14,7 +14,7 @@ export const DarkModeToggle = () => {
     }
   );
 
-  useEffect(() => updateIsDark((_) => systemPrefersDark), []);
+  useEffect(() => updateIsDark((_) => systemPrefersDark), [systemPrefersDark]);
 
   useEffect(() => {
     if (isDark) {

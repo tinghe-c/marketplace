@@ -53,7 +53,7 @@ export default function ProductSearchGrid({
     return () => {
       ignore = true;
     };
-  }, [query, updateProducts]);
+  }, [cart, updateCart, updateCartOnServer, query, updateProducts]);
 
   return (
     <div

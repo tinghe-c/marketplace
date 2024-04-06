@@ -22,7 +22,7 @@ export default function ProductTile({
     if (cart.has(product.id)) {
       updateCount((_) => cart.get(product.id)![1]);
     }
-  }, []);
+  }, [cart, product.id]);
 
   const plus = () => {
     updateCart(
