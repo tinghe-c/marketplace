@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useDebugValue, useEffect, useReducer, useState } from "react";
-import ProductDefaultGrid from "./product-grid";
+import ProductDefaultGrid from "./product-default-grid";
 import Navbar from "./navbar";
 import { Cart, newCart } from "./cart";
 import CartSidebar from "./cart-sidebar";
