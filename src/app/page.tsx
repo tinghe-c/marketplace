@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useDebugValue, useEffect, useReducer, useState } from "react";
-import ProductDefaultGrid from "./product-default-grid";
-import Navbar from "./navbar";
-import { Cart, newCart } from "./cart";
-import CartSidebar from "./cart-sidebar";
+import ProductDefaultGrid from "./product/product-default-grid";
+import Navbar from "./navbar/navbar";
+import { Cart, newCart } from "./cart/cart";
+import CartSidebar from "./cart/cart-sidebar";
 import { Account, CartsAPIResult, apiBaseUrl, userId } from "./api";
-import ProductSearchGrid from "./product-search-grid";
-import ProductCategoryGrid from "./product-category-grid";
+import ProductSearchGrid from "./product/product-search-grid";
+import ProductCategoryGrid from "./product/product-category-grid";
 import { userAgent } from "next/server";
 
 export default function Home() {

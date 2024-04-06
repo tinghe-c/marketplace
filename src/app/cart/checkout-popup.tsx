@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import Popup from "reactjs-popup"; //
+import Popup from "reactjs-popup";
 
 export default function CheckoutPopup() {
   const [open, setOpen] = useState(false);

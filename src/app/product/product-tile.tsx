@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Product } from "./product";
-import { Cart, addToCart, subtractFromCart } from "./cart";
+import { Cart, addToCart, subtractFromCart } from "../cart/cart";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface ProductTileProps {

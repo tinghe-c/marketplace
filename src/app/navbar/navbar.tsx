@@ -2,9 +2,9 @@ import LogoButton from "./logo";
 import Searchbar from "./searchbar";
 import DarkModeToggle from "./darkmode-toggle";
 import { Dispatch, SetStateAction } from "react";
-import CartToggle from "./cart-toggle";
+import CartToggle from "../cart/cart-toggle";
 import AccountModal from "./account-modal";
-import { Account } from "./api";
+import { Account } from "../api";
 
 interface NavbarProps {
   updateCartVisible: Dispatch<SetStateAction<boolean>>;

@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Popup from "reactjs-popup";
-import { Account, apiBaseUrl, userId } from "./api";
+import { Account, apiBaseUrl, userId } from "../api";
 import Image from "next/image";
 
 export default function AccountModal() {

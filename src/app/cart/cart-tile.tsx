@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Product } from "./product";
+import { Product } from "../product/product";
 import { Cart, addToCart, subtractFromCart } from "./cart";
 import { Dispatch, DispatchWithoutAction, SetStateAction } from "react";
 

@@ -1,4 +1,4 @@
-import { Product } from "./product";
+import { Product } from "./product/product";
 
 export const apiBaseUrl = "https://dummyjson.com";
 export const userId = 1;

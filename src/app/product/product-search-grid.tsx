@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { ProductAPIResult, apiBaseUrl, cleanUpData } from "./api";
+import { ProductAPIResult, apiBaseUrl, cleanUpData } from "../api";
 import { Product } from "./product";
 import ProductTile from "./product-tile";
-import { Cart } from "./cart";
+import { Cart } from "../cart/cart";
 import Masonry from "react-responsive-masonry";
 
 interface ProductSearchGridProps {

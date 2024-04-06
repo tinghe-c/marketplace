@@ -7,8 +7,8 @@ import ProductTile from "./product-tile";
 import _ from "lodash";
 import Masonry from "react-responsive-masonry";
 import { Product } from "./product";
-import { Cart } from "./cart";
-import { ProductAPIResult, apiBaseUrl, cleanUpData } from "./api";
+import { Cart } from "../cart/cart";
+import { ProductAPIResult, apiBaseUrl, cleanUpData } from "../api";
 
 interface ProductGridProps {
   pageSize: number;

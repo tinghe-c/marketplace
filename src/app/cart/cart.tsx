@@ -1,7 +1,5 @@
-// export type Cart = unknown;
-
 import { Map } from "immutable";
-import { Product } from "./product";
+import { Product } from "../product/product";
 import { Dispatch, SetStateAction } from "react";
 import { error } from "console";
 
