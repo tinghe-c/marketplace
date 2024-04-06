@@ -1,16 +1,20 @@
 "use client";
 
 import React, { useDebugValue, useEffect, useState } from "react";
-import ProductGrid from "./product-grid";
+import ProductDefaultGrid from "./product-grid";
 import Navbar from "./navbar";
 import { Cart, newCart } from "./cart";
 import CartSidebar from "./cart-sidebar";
 import { CartsAPIResult, apiBaseUrl, userId } from "./api";
+import ProductSearchGrid from "./product-search-grid";
+import ProductCategoryGrid from "./product-category-grid";
+import { userAgent } from "next/server";
 
 export default function Home() {
   const [cartId, updateCartId] = useState(1000);
   const [cart, updateCart] = useState(newCart());
   const [cartVisible, updateCartVisible] = useState(false);
+  const [query, updateQuery] = useState("iPhone");
 
   // send request to sync with server
   const updateCartOnServer = () => {
@@ -38,18 +42,24 @@ export default function Home() {
   useEffect(() => {
     let ignore = false;
 
-    fetch(`${apiBaseUrl}/carts/user/${userId}`)
+    fetch(`${apiBaseUrl}/carts/add`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: userId,
+        products: [{}],
+      }),
+    })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
         return response.json();
       })
-      .then((data: CartsAPIResult) => {
+      .then((data) => {
         if (ignore) {
           return;
         }
 
-        // updateCartId((_) => data.carts[0].id);
-        // updateCart((_) => data.carts[0]);
+        updateCartId((_) => data.id);
       });
 
     return () => {
@@ -59,16 +69,32 @@ export default function Home() {
 
   return (
     <div className="flex h-screen flex-col overflow-hidden justify-between">
-      <Navbar updateCartVisible={updateCartVisible} />
+      <Navbar updateCartVisible={updateCartVisible} updateQuery={updateQuery} />
       <div className="h-4"></div>
       <main className="flex-1 overflow-hidden font-mono text-sm px-4 pb-4">
-        <ProductGrid
-          baseUrl="https://dummyjson.com"
-          pageSize={25}
-          cart={cart}
-          updateCart={updateCart}
-          updateCartOnServer={updateCartOnServer}
-        />
+        {query.length == 0 ? (
+          <ProductDefaultGrid
+            baseUrl="https://dummyjson.com"
+            pageSize={25}
+            cart={cart}
+            updateCart={updateCart}
+            updateCartOnServer={updateCartOnServer}
+          />
+        ) : query.startsWith("!c ") ? (
+          <ProductCategoryGrid
+            query={query}
+            cart={cart}
+            updateCart={updateCart}
+            updateCartOnServer={updateCartOnServer}
+          />
+        ) : (
+          <ProductSearchGrid
+            query={query}
+            cart={cart}
+            updateCart={updateCart}
+            updateCartOnServer={updateCartOnServer}
+          />
+        )}
         <CartSidebar
           cart={cart}
           visible={cartVisible}

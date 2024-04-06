@@ -26,3 +26,21 @@ export interface CartsAPIResult {
   skip: number;
   limit: number;
 }
+
+function cleanUpStr(str: string) {
+  let words = str.split(" ");
+  let clean = [];
+  for (let word of words) {
+    word = word.replaceAll(".", "");
+    word = word.charAt(0).toUpperCase() + word.slice(1);
+    clean.push(word);
+  }
+  return clean.join(" ");
+}
+
+export function cleanUpData(data: ProductAPIResult) {
+  for (let product of data.products) {
+    product.title = cleanUpStr(product.title);
+  }
+  return data;
+}

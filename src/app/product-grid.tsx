@@ -8,7 +8,7 @@ import _ from "lodash";
 import Masonry from "react-responsive-masonry";
 import { Product } from "./product";
 import { Cart } from "./cart";
-import { ProductAPIResult } from "./api";
+import { ProductAPIResult, cleanUpData } from "./api";
 
 interface ProductGridProps {
   baseUrl: string;
@@ -18,25 +18,7 @@ interface ProductGridProps {
   updateCartOnServer: () => void;
 }
 
-function cleanUpStr(str: string) {
-  let words = str.split(" ");
-  let clean = [];
-  for (let word of words) {
-    word = word.replaceAll(".", "");
-    word = word.charAt(0).toUpperCase() + word.slice(1);
-    clean.push(word);
-  }
-  return clean.join(" ");
-}
-
-function cleanUpData(data: ProductAPIResult) {
-  for (let product of data.products) {
-    product.title = cleanUpStr(product.title);
-  }
-  return data;
-}
-
-export default function ProductGrid({
+export default function ProductDefaultGrid({
   baseUrl,
   pageSize,
   cart,
@@ -57,9 +39,7 @@ export default function ProductGrid({
         if (!response.ok) throw Error(response.statusText);
         return response.json();
       })
-      .then((data) => {
-        return cleanUpData(data);
-      })
+      .then(cleanUpData)
       .then((data: ProductAPIResult) => {
         if (ignore) {
           return;
