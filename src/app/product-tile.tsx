@@ -18,17 +18,25 @@ interface ProductTileProps {
 
 export default function ProductTile({
   product,
+  cart,
   updateCart,
   updateCartOnServer,
 }: ProductTileProps) {
   const [count, updateCount] = useState(0);
 
+  useEffect(() => {
+    if (cart.has(product.id)) {
+      updateCount((_) => cart.get(product.id)![1]);
+    }
+  }, []);
+
   const plus = () => {
     // TODO API call
     updateCart(
       addToCart({
-        product,
-        updateCount,
+        id: product.id,
+        product: product,
+        updateCount: updateCount,
       })
     );
     updateCartOnServer();
@@ -36,7 +44,7 @@ export default function ProductTile({
   };
 
   const minus = () => {
-    updateCart(subtractFromCart(product));
+    updateCart(subtractFromCart(product.id));
     updateCartOnServer();
     updateCount((c) => c - 1);
   };

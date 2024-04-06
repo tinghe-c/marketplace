@@ -36,7 +36,7 @@ export default function ProductSearchGrid({
 
         updateProducts((_) =>
           data.products.map((product: Product, i: number) => {
-            const count = cart.get(product) || 0;
+            const count = cart.get(product.id) || 0;
             return (
               <ProductTile
                 key={i}

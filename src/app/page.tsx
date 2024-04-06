@@ -21,8 +21,8 @@ export default function Home() {
     updateCartId((cartId: number) => {
       updateCart((cart: Cart) => {
         const products = Array.from(cart).map((elem) => {
-          const [product, [quantity, _]] = elem;
-          return { id: product.id, quantity: quantity };
+          const [id, [product, quantity, _]] = elem;
+          return { id: id, quantity: quantity };
         });
         fetch(`${apiBaseUrl}/carts/${cartId}`, {
           method: "PUT",

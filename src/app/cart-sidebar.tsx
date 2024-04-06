@@ -13,7 +13,10 @@ interface CartSidebarProps {
 }
 
 const totalPrice = (cart: Cart) =>
-  Array.from(cart.map((l) => l[0])).reduce((x, [p, n]) => x + n * p.price, 0);
+  Array.from(cart.values()).reduce(
+    (acc, [prod, qty, _]) => acc + qty * prod.price,
+    0
+  );
 
 export default function CartSidebar(props: CartSidebarProps) {
   return (
@@ -36,7 +39,7 @@ export default function CartSidebar(props: CartSidebarProps) {
         </div>
       </div>
       {Array.from(props.cart).map((entry, i) => {
-        const [product, [count, updateCount]] = entry;
+        const [id, [product, count, updateCount]] = entry;
         return (
           <div key={i}>
             <CartTile

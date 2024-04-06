@@ -5,34 +5,44 @@ import { Product } from "./product";
 import { Dispatch, SetStateAction } from "react";
 import { error } from "console";
 
-export type Cart = Map<Product, [number, Dispatch<SetStateAction<number>>]>;
+export type Cart = Map<
+  number,
+  [Product, number, Dispatch<SetStateAction<number>>]
+>;
 
 export function newCart(): Cart {
   return Map();
 }
 
 export function addToCart({
+  id,
   product,
   updateCount,
 }: {
+  id: number;
   product: Product;
   updateCount: Dispatch<SetStateAction<number>>;
 }) {
   return (cart: Cart) =>
-    cart.update(product, [0, updateCount], ([count, fn]) => [count + 1, fn]);
+    cart.update(id, [product, 0, updateCount], ([product, count, fn]) => [
+      product,
+      count + 1,
+      fn,
+    ]);
 }
 
-export function subtractFromCart(product: Product) {
+export function subtractFromCart(id: number) {
   return (cart: Cart) => {
-    let [count, updateCount] = cart.get(product)!;
+    let [product, count, updateCount] = cart.get(id)!;
     switch (count) {
       case 1:
-        return cart.delete(product);
+        return cart.delete(id);
       default:
-        return cart.update(product, [count, updateCount], ([count, fn]) => [
-          count - 1,
-          fn,
-        ]);
+        return cart.update(
+          id,
+          [product, count, updateCount],
+          ([product, count, fn]) => [product, count - 1, fn]
+        );
     }
   };
 }
